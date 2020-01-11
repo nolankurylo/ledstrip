@@ -22,8 +22,6 @@ def wheel(offset):
 
 
 def rainbow_cycle(wait):
-
-
     for j in range(256):
         for i in range(num_pixels):
             pixel_index = (i * 256 // num_pixels) + j
@@ -31,22 +29,14 @@ def rainbow_cycle(wait):
             pixels.show()
             time.sleep(wait)
 while True:
-    # Comment this line out if you have RGBW/GRBW NeoPixels
-    pixels.fill((255, 0, 0))
-    # Uncomment this line if you have RGBW/GRBW NeoPixels
-    # pixels.fill((255, 0, 0, 0))
+    print("Loop")
+    pixels.fill(255, 0, 0) # Red
     pixels.show()
     time.sleep(1)
-    # Comment this line out if you have RGBW/GRBW NeoPixels
-    pixels.fill((0, 255, 0))
-    # Uncomment this line if you have RGBW/GRBW NeoPixels
-    # pixels.fill((0, 255, 0, 0))
+    pixels.fill(0, 255, 0) # Blue
     pixels.show()
     time.sleep(1)
-    # Comment this line out if you have RGBW/GRBW NeoPixels
-    pixels.fill((0, 0, 255))
-    # Uncomment this line if you have RGBW/GRBW NeoPixels
-    # pixels.fill((0, 0, 255, 0))
+    pixels.fill(0, 0, 255) # Green
     pixels.show()
     time.sleep(1)
-    rainbow_cycle(0.001)  # rainbow cycle with 1ms delay per step
+    rainbow_cycle(0.001) 
