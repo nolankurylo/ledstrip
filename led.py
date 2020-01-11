@@ -42,13 +42,13 @@ def red_cycle(wait):
         time.sleep(wait)
     return
 while True:
-    pixels.fill((255, 0, 0)) # Red
-    pixels.show()
+    # pixels.fill((255, 0, 0)) # Red
+    # pixels.show()
+    # time.sleep(1)
+    # pixels.fill((0, 255, 0)) # Green
+    # pixels.show()
+    # time.sleep(1)
+    # pixels.fill((0, 0, 255)) # Blue
+    # pixels.show()
     time.sleep(1)
-    pixels.fill((0, 255, 0)) # Green
-    pixels.show()
-    time.sleep(1)
-    pixels.fill((0, 0, 255)) # Blue
-    pixels.show()
-    time.sleep(1)
-    red_cycle(0.0001) 
+    red_cycle(0.000001) 
