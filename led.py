@@ -30,13 +30,13 @@ def rainbow_cycle(wait):
             time.sleep(wait)
 while True:
     print("Loop")
-    pixels.fill(255, 0, 0) # Red
+    pixels.fill((255, 0, 0)) # Red
     pixels.show()
     time.sleep(1)
-    pixels.fill(0, 255, 0) # Blue
+    pixels.fill((0, 255, 0)) # Blue
     pixels.show()
     time.sleep(1)
-    pixels.fill(0, 0, 255) # Green
+    pixels.fill((0, 0, 255)) # Green
     pixels.show()
     time.sleep(1)
     rainbow_cycle(0.001) 
