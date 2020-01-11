@@ -5,7 +5,7 @@ import neopixel
 pixel_pin = board.D18
 num_pixels = 300
 ORDER = neopixel.GRB
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.5, auto_write=False,
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
 
 
@@ -31,14 +31,14 @@ def wheel(pos):
         r = 0
         g = int(pos*3)
         b = int(255 - pos*3)
-    return (r, g, b) if ORDER == neopixel.RGB or ORDER == neopixel.GRB else (r, g, b, 0)
+    return (r, g, b) 
 
 
 def rainbow_cycle(wait):
 
 
     for j in range(255):
-        for i in range(num_pixels):
+        for i in range(num_pixels-1):
             pixel_index = int((i * 256 // num_pixels) + j)
             pixels[i] = wheel(pixel_index & 255)
             pixels.show()
