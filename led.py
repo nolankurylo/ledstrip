@@ -1,17 +1,11 @@
 import time
 import board
 import neopixel
-# On CircuitPlayground Express, and boards with built in status NeoPixel -> board.NEOPIXEL
-# Otherwise choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D1
-# pixel_pin = board.NEOPIXEL
-# On a Raspberry pi, use this instead, not all pins are supported
+
 pixel_pin = board.D18
-# The number of NeoPixels
 num_pixels = 300
-# The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
-# For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
 ORDER = neopixel.GRB
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False,
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.5, auto_write=False,
                            pixel_order=ORDER)
 
 
@@ -45,7 +39,7 @@ def rainbow_cycle(wait):
 
     for j in range(255):
         for i in range(num_pixels):
-            pixel_index = (i * 255 // num_pixels) + j
+            pixel_index = (i * 255 / num_pixels) + j
             pixels[i] = wheel(pixel_index & 255)
             pixels.show()
             time.sleep(wait)
