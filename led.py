@@ -8,7 +8,6 @@ ORDER = neopixel.GRB
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
 
-
 def wheel(offset):
 
     offset = 255 - offset
@@ -28,6 +27,8 @@ def rainbow_cycle(wait):
             pixels[i] = wheel(pixel_index & 255)
             pixels.show()
             time.sleep(wait)
+
+    return
 while True:
     print("Loop")
     pixels.fill((255, 0, 0)) # Red
