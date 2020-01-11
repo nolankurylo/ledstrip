@@ -35,6 +35,11 @@ def red_cycle(wait):
         pixels[i] = (255,0,0)
         pixels.show()
         time.sleep(wait)
+    for i in reversed(range(num_pixels)):
+        pixels.fill((0, 0, 0))
+        pixels[i] = (255, 0, 0)
+        pixels.show()
+        time.sleep(wait)
     return
 while True:
     pixels.fill((255, 0, 0)) # Red
@@ -46,4 +51,4 @@ while True:
     pixels.fill((0, 0, 255)) # Blue
     pixels.show()
     time.sleep(1)
-    red_cycle(0.001) 
+    red_cycle(0.0001) 
