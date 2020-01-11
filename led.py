@@ -27,7 +27,7 @@ def rainbow_cycle(wait):
             pixels[i] = wheel(pixel_index & 255)
             pixels.show()
             time.sleep(wait)
-        print("j= "+ j)
+        print("j= "+ str(j))
     print("end loops")
     return
 while True:
