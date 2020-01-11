@@ -32,7 +32,7 @@ def rainbow_cycle(wait):
 def red_cycle(wait):
     for i in range(num_pixels):
         pixels.fill((0, 0, 0))
-        pixels[i] = pixels.fill((255,0,0))
+        pixels[i] = (255,0,0)
         pixels.show()
         time.sleep(wait)
     return
