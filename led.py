@@ -31,6 +31,7 @@ def rainbow_rgb(offset):
 @app.route('/rainbow')
 def rainbow():
     print("hi")
+    threading._start_new_thread(rainbow, ())
     global break_bool
     while True:
         if break_bool:
@@ -56,6 +57,7 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     print("single")
+    threading._start_new_thread(rainbow_single, ())
     global break_bool
     while True:
         if break_bool:
@@ -89,6 +91,6 @@ def index():
 
 
 if __name__ == "__main__":
-    threading._start_new_thread(rainbow, ())
-    threading._start_new_thread(rainbow_single, ())
+    
+    
     app.run(debug=True, threaded=True)
