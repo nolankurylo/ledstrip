@@ -29,7 +29,7 @@ def rainbow_rgb(offset):
     offset -= 170
     return (offset * 3, 255 - offset * 3, 0)
 
-async def background_one():
+def background_one():
     global break_bool_s
     break_bool_s = True
     print("hi")
@@ -54,12 +54,12 @@ async def background_one():
             time.sleep(0.01)
 
 @app.route('/rainbow')
-def rainbow():
-    await background_one()
+async def rainbow():
+    background_one()
     return ('', 200)
 
 
-async def background_two():
+def background_two():
     global break_bool_m
     break_bool_m = True
     print("single")
@@ -83,7 +83,7 @@ async def background_two():
             time.sleep(0.01)
         
 @app.route('/rainbow_single')
-def rainbow_single():
+async def rainbow_single():
     background_two()
     return ('', 200)
 
