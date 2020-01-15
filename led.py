@@ -29,7 +29,7 @@ def rainbow_rgb(offset):
     offset -= 170
     return (offset * 3, 255 - offset * 3, 0)
 
-def background_one():
+async def background_one():
     global break_bool_s
     break_bool_s = True
     print("hi")
@@ -59,7 +59,7 @@ def rainbow():
     return ('', 200)
 
 
-def background_two():
+async def background_two():
     global break_bool_m
     break_bool_m = True
     print("single")
@@ -101,6 +101,6 @@ def index():
 
 if __name__ == "__main__":
     
-    app.run(debug=True, threaded=True)
+    app.run(debug=True)
     # threading._start_new_thread(rainbow, ())
     # threading._start_new_thread(rainbow_single, ())
