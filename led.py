@@ -8,9 +8,10 @@ num_pixels = 300
 ORDER = neopixel.GRB
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
-global break_bool
+
 
 app = Flask(__name__)
+break_bool = False
 
 def rainbow_rgb(offset):
 
