@@ -66,6 +66,7 @@ while True:
     print("hey")
     if break_bool:
         print("TRUE")
+    time.sleep(5)
 
 
 
