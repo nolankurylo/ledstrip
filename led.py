@@ -28,7 +28,7 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    print "rainbow_single"
+    print("rainbow_single")
     global q
     q.empty()
     job = q.enqueue(background_two)
