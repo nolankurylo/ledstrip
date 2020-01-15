@@ -1,4 +1,5 @@
 import time
+import threading
 import board
 import neopixel
 from flask import Flask
@@ -13,6 +14,15 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False
 
 app = Flask(__name__)
 
+
+@app.before_first_request
+def light_thread():
+    def run():
+        global break_bool
+        break_bool = True
+
+    thread = threading.Thread(target=run)
+    thread.start()
 
 def rainbow_rgb(offset):
 
@@ -29,11 +39,11 @@ def rainbow_rgb(offset):
 @app.route('/rainbow')
 def rainbow():
     print("hi")
+    global break_bool
     while True:
-        # if break_bool:
-        #     global break_bool 
-        #     break_bool = False
-        #     break
+        if break_bool:
+            break_bool = False
+            break
         pixels.fill((255, 0, 0)) # Red
         pixels.show()
         time.sleep(1)
@@ -48,16 +58,18 @@ def rainbow():
             pixels[i] = rainbow_rgb(pixel_index & 255)
             pixels.show()
             time.sleep(0.01)
+    thread = threading.Thread(target=run)
+    thread.start()
     return
         
 @app.route('/rainbow_single')
 def rainbow_single():
     print("single")
+    global break_bool
     while True:
-        # if break_bool:
-            
-        #     break_bool = False
-        #     break
+        if break_bool:
+            break_bool = False
+            break
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
             pixels.fill((0, 0, 0))
@@ -86,4 +98,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, threaded=True)
