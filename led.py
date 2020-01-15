@@ -25,7 +25,7 @@ def rainbow_rgb(offset):
 
 
 @app.route('/rainbow')
-def rainbow(wait):
+def rainbow():
     while True:
         if break_bool:
             break_bool = False
@@ -44,10 +44,10 @@ def rainbow(wait):
             pixel_index = i * 256 // num_pixels
             pixels[i] = rainbow_rgb(pixel_index & 255)
             pixels.show()
-            time.sleep(wait)
+            time.sleep(0.01)
         
 @app.route('/rainbow_single')
-def rainbow_single(wait):
+def rainbow_single():
     while True:
         if break_bool:
             break_bool = False
@@ -57,14 +57,14 @@ def rainbow_single(wait):
             pixels.fill((0, 0, 0))
             pixels[i] = rainbow_rgb(pixel_index & 255)
             pixels.show()
-            time.sleep(wait)
+            time.sleep(0.01)
         
         for i in reversed(range(num_pixels)):
             pixel_index = i * 256 // num_pixels
             pixels.fill((0, 0, 0))
             pixels[i] = rainbow_rgb(pixel_index & 255)
             pixels.show()
-            time.sleep(wait)
+            time.sleep(0.01)
 
 @app.route('/reset')
 def reset():
