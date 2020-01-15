@@ -19,6 +19,7 @@ q = Queue(connection=r)
 def rainbow():
     global q
     q.empty()
+    q.dequeue_all()
     job = q.enqueue(background_one)
     job.cancel()
     return ('', 200)
@@ -31,6 +32,7 @@ def rainbow_single():
     print("rainbow_single")
     global q
     q.empty()
+    q.dequeue_all()
     job = q.enqueue(background_two)
     job.cancel()
     return ('', 200)
