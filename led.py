@@ -73,8 +73,8 @@ def main():
 
 @app.route('/')
 def index():
-    print("index")
-    break_bool = True
+    print(x)
+    rainbow_single(0.01)
     return "index"
 
 if __name__ == "__main__":
