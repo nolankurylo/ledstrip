@@ -27,9 +27,7 @@ def rainbow_rgb(offset):
 @app.route('/rainbow')
 def rainbow():
     while True:
-        if break_bool:
-            break_bool = False
-            return
+        
         pixels.fill((255, 0, 0)) # Red
         pixels.show()
         time.sleep(1)
@@ -49,9 +47,7 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     while True:
-        if break_bool:
-            break_bool = False
-            return
+        
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
             pixels.fill((0, 0, 0))
