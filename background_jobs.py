@@ -37,6 +37,7 @@ def background_two():
             pixels[i] = rainbow_rgb(pixel_index & 255)
             pixels.show()
             time.sleep(0.01)
+    return
 
 
 def background_one():
@@ -55,3 +56,4 @@ def background_one():
             pixels[i] = rainbow_rgb(pixel_index & 255)
             pixels.show()
             time.sleep(0.01)
+    return
