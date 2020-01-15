@@ -78,9 +78,6 @@ def reset():
 def index():
     return "index"
 
-def main():
-    break_bool = False
 
 if __name__ == "__main__":
     app.run(debug=True)
-    main()
