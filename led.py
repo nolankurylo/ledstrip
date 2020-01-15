@@ -15,7 +15,7 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False
 app = Flask(__name__)
 
 
-@app.before_first_request
+@app.before_request
 def light_thread():
     def run():
         global break_bool
