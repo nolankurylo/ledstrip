@@ -58,7 +58,8 @@ def background_one():
 
 @app.route('/rainbow')
 def rainbow():
-    q.dequeue()
+    global q
+    q.empty()
     job = q.enqueue(background_one)
     return ('', 200)
 
@@ -88,7 +89,8 @@ def background_two():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    q.dequeue()
+    global q
+    q.empty()
     job = q.enqueue(background_two)
     return ('', 200)
 
