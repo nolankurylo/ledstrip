@@ -30,7 +30,8 @@ def rainbow_rgb(offset):
 def rainbow():
     while True:
         if break_bool:
-            global break_bool = False
+            global break_bool 
+            break_bool = False
             break
         pixels.fill((255, 0, 0)) # Red
         pixels.show()
@@ -52,7 +53,8 @@ def rainbow():
 def rainbow_single():
     while True:
         if break_bool:
-            global break_bool = False
+            global break_bool
+            break_bool = False
             break
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
