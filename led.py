@@ -52,4 +52,4 @@ while True:
     # pixels.show()
     print("hey")
     time.sleep(1)
-    red_cycle(0.000001) 
+    rainbow_cycle(0.01) 
