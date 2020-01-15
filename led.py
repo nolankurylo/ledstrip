@@ -55,7 +55,7 @@ async def background_one():
 
 @app.route('/rainbow')
 def rainbow():
-    background_one()
+    await background_one()
     return ('', 200)
 
 
