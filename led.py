@@ -1,7 +1,7 @@
 import time
 import board
 import neopixel
-import flask
+from flask import Flask
 
 pixel_pin = board.D18
 num_pixels = 300
