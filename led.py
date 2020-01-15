@@ -60,7 +60,7 @@ def background_one():
 def rainbow():
     global q
     q.empty()
-    job = q.enqueue(background_one)
+    job = q.enqueue(background_one, 'http://nvie.com')
     return ('', 200)
 
 
@@ -91,7 +91,7 @@ def background_two():
 def rainbow_single():
     global q
     q.empty()
-    job = q.enqueue(background_two)
+    job = q.enqueue(background_two, 'http://nvie.com')
     return ('', 200)
 
 @app.route('/reset')
