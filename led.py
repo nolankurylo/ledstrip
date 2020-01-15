@@ -3,7 +3,8 @@ import threading
 import random
 import board
 import neopixel
-import asyncio
+import redis
+from rq import Queue
 from flask import *
 
 pixel_pin = board.D18
@@ -16,6 +17,8 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False
 
 
 app = Flask(__name__)
+r = redis.Redis()
+q = Queue(connection=r)
 
 
 def rainbow_rgb(offset):
@@ -54,8 +57,9 @@ def background_one():
             time.sleep(0.01)
 
 @app.route('/rainbow')
-async def rainbow():
-    background_one()
+def rainbow():
+    q.dequeue()
+    job = q.enqueue(background_one)
     return ('', 200)
 
 
@@ -83,8 +87,9 @@ def background_two():
             time.sleep(0.01)
         
 @app.route('/rainbow_single')
-async def rainbow_single():
-    background_two()
+def rainbow_single():
+    q.dequeue()
+    job = q.enqueue(background_two)
     return ('', 200)
 
 @app.route('/reset')
