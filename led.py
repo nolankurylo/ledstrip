@@ -24,6 +24,7 @@ def rainbow_rgb(offset):
     return (offset * 3, 255 - offset * 3, 0)
 
 
+@app.route('/rainbow')
 def rainbow(wait):
     while True:
         if break_bool:
@@ -45,35 +46,35 @@ def rainbow(wait):
             pixels.show()
             time.sleep(wait)
         
-
+@app.route('/rainbow_single')
 def rainbow_single(wait):
-    for i in range(num_pixels):
-        pixel_index = i * 256 // num_pixels
-        pixels.fill((0, 0, 0))
-        pixels[i] = rainbow_rgb(pixel_index & 255)
-        pixels.show()
-        time.sleep(wait)
-    
-    for i in reversed(range(num_pixels)):
-        pixel_index = i * 256 // num_pixels
-        pixels.fill((0, 0, 0))
-        pixels[i] = rainbow_rgb(pixel_index & 255)
-        pixels.show()
-        time.sleep(wait)
-    return
-def main():
     while True:
-        print("hey")
-        if break_bool:
-            print("TRUE")
-        time.sleep(5)
+         if break_bool:
+                break_bool = False
+            return
+        for i in range(num_pixels):
+            pixel_index = i * 256 // num_pixels
+            pixels.fill((0, 0, 0))
+            pixels[i] = rainbow_rgb(pixel_index & 255)
+            pixels.show()
+            time.sleep(wait)
+        
+        for i in reversed(range(num_pixels)):
+            pixel_index = i * 256 // num_pixels
+            pixels.fill((0, 0, 0))
+            pixels[i] = rainbow_rgb(pixel_index & 255)
+            pixels.show()
+            time.sleep(wait)
+
+@app.route('/reset')
+def reset():
+    pass
 
 
 
 
 @app.route('/')
 def index():
-    rainbow_single(0.01)
     return "index"
 
 if __name__ == "__main__":
