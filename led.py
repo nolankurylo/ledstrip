@@ -30,14 +30,15 @@ def rainbow_cycle(wait):
 
 
 def red_cycle(wait):
-    pixel_index = i * 256 // num_pixels
     for i in range(num_pixels):
+        pixel_index = i * 256 // num_pixels
         pixels.fill((0, 0, 0))
         pixels[i] = wheel(pixel_index & 255)
         pixels.show()
         time.sleep(wait)
-    pixel_index = i * 256 // num_pixels
+    
     for i in reversed(range(num_pixels)):
+        pixel_index = i * 256 // num_pixels
         pixels.fill((0, 0, 0))
         pixels[i] = wheel(pixel_index & 255)
         pixels.show()
