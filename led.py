@@ -50,7 +50,7 @@ def rainbow(wait):
 def rainbow_single(wait):
     while True:
          if break_bool:
-                break_bool = False
+            break_bool = False
             return
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
