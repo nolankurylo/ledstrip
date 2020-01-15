@@ -102,5 +102,5 @@ def index():
 if __name__ == "__main__":
     
     app.run(debug=True, threaded=True)
-    threading._start_new_thread(rainbow, ())
-    threading._start_new_thread(rainbow_single, ())
+    # threading._start_new_thread(rainbow, ())
+    # threading._start_new_thread(rainbow_single, ())
