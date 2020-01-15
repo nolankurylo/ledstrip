@@ -6,12 +6,13 @@ from flask import Flask
 pixel_pin = board.D18
 num_pixels = 300
 ORDER = neopixel.GRB
+break_bool = 0
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
 
 
 app = Flask(__name__)
-break_bool = False
+
 
 def rainbow_rgb(offset):
 
