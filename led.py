@@ -17,7 +17,7 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False
 
 
 app = Flask(__name__)
-r = redis.Redis(host="localhost", port=5000)
+r = redis.Redis(host="localhost")
 q = Queue(connection=r)
 
 
