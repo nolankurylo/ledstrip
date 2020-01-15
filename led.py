@@ -50,5 +50,6 @@ while True:
     # time.sleep(1)
     # pixels.fill((0, 0, 255)) # Blue
     # pixels.show()
+    print("hey")
     time.sleep(1)
     red_cycle(0.000001) 
