@@ -8,7 +8,8 @@ from flask import *
 pixel_pin = board.D18
 num_pixels = 300
 ORDER = neopixel.GRB
-break_bool = False
+break_bool_s = False
+break_bool_m = False
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
 
@@ -30,11 +31,12 @@ def rainbow_rgb(offset):
 
 @app.route('/rainbow')
 def rainbow():
+    global break_bool_s = True
     print("hi")
-    global break_bool
+    global break_bool_m
     while True:
-        if break_bool:
-            break_bool = False
+        if break_bool_m:
+            break_bool_m = False
             break
         pixels.fill((255, 0, 0)) # Red
         pixels.show()
@@ -55,11 +57,13 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
+    global break_bool_m
+    break_bool_m = True
     print("single")
-    global break_bool
+    global break_bool_s
     while True:
-        if break_bool:
-            break_bool = False
+        if break_bool_s:
+            break_bool_s = False
             break
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
