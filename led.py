@@ -3,6 +3,7 @@ import threading
 import random
 import board
 import neopixel
+import asyncio
 from flask import *
 
 pixel_pin = board.D18
@@ -28,7 +29,7 @@ def rainbow_rgb(offset):
     offset -= 170
     return (offset * 3, 255 - offset * 3, 0)
 
-def background_one():
+async def background_one():
     global break_bool_s
     break_bool_s = True
     print("hi")
@@ -58,7 +59,7 @@ def rainbow():
     return ('', 200)
 
 
-def background_two():
+async def background_two():
     global break_bool_m
     break_bool_m = True
     print("single")
