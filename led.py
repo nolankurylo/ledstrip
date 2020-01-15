@@ -31,7 +31,8 @@ def rainbow_rgb(offset):
 
 @app.route('/rainbow')
 def rainbow():
-    global break_bool_s = True
+    global break_bool_s
+    break_bool_s = True
     print("hi")
     global break_bool_m
     while True:
