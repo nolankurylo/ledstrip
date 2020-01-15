@@ -61,12 +61,12 @@ def rainbow_single(wait):
         pixels.show()
         time.sleep(wait)
     return
-
-while True:
-    print("hey")
-    if break_bool:
-        print("TRUE")
-    time.sleep(5)
+def main():
+    while True:
+        print("hey")
+        if break_bool:
+            print("TRUE")
+        time.sleep(5)
 
 
 
@@ -79,3 +79,4 @@ def index():
 
 if __name__ == "__main__":
     app.run()
+    main()
