@@ -55,8 +55,7 @@ def background_one():
 
 @app.route('/rainbow')
 def rainbow():
-    def process1():
-        background_one()
+    background_one()
     return ('', 200)
 
 
@@ -85,8 +84,7 @@ def background_two():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    def process2():
-        background_two()
+    background_two()
     return ('', 200)
 
 @app.route('/reset')
