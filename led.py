@@ -2,7 +2,7 @@ import time
 import threading
 import board
 import neopixel
-from flask import Flask
+from flask import Flask, thread
 
 pixel_pin = board.D18
 num_pixels = 300
