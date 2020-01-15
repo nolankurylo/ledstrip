@@ -1,12 +1,5 @@
 def background_two():
-    global break_bool_m
-    break_bool_m = True
-    print("single")
-    global break_bool_s
     while True:
-        if break_bool_s:
-            break_bool_s = False
-            break
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
             pixels.fill((0, 0, 0))
@@ -23,14 +16,7 @@ def background_two():
 
 
 def background_one():
-    global break_bool_s
-    break_bool_s = True
-    print("hi")
-    global break_bool_m
     while True:
-        if break_bool_m:
-            break_bool_m = False
-            break
         pixels.fill((255, 0, 0))  # Red
         pixels.show()
         time.sleep(1)
