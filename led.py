@@ -1,5 +1,6 @@
 import time
 import threading
+import random
 import board
 import neopixel
 from flask import *
