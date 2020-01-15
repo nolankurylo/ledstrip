@@ -73,7 +73,6 @@ def main():
 
 @app.route('/')
 def index():
-    print(x)
     rainbow_single(0.01)
     return "index"
 
