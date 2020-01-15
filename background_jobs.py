@@ -1,3 +1,27 @@
+import board
+import neopixel
+import time
+
+pixel_pin = board.D18
+num_pixels = 300
+ORDER = neopixel.GRB
+
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
+                           pixel_order=ORDER)
+
+
+def rainbow_rgb(offset):
+    
+    offset = 255 - offset
+    if offset < 85:
+        return (255 - offset * 3, 0, offset * 3)
+    if offset < 170:
+        offset -= 85
+        return (0, offset * 3, 255 - offset * 3)
+    offset -= 170
+    return (offset * 3, 255 - offset * 3, 0)
+
+
 def background_two():
     while True:
         for i in range(num_pixels):
