@@ -54,7 +54,8 @@ def background_one():
 
 @app.route('/rainbow')
 def rainbow():
-    return background_one()
+    background_one()
+    return ('', 200)
 
 
 def background_two():
@@ -82,8 +83,8 @@ def background_two():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    
-    return background_two()
+    background_two()
+    return ('', 200)
 
 @app.route('/reset')
 def reset():
