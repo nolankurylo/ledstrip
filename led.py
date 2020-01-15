@@ -49,7 +49,7 @@ def rainbow(wait):
 @app.route('/rainbow_single')
 def rainbow_single(wait):
     while True:
-         if break_bool:
+        if break_bool:
             break_bool = False
             return
         for i in range(num_pixels):
