@@ -89,6 +89,6 @@ def index():
 
 
 if __name__ == "__main__":
-    thread.start_new_thread(rainbow, ())
-    thread.start_new_thread(rainbow_single, ())
+    Thread.start_new_thread(rainbow, ())
+    Thread.start_new_thread(rainbow_single, ())
     app.run(debug=True, threaded=True)
