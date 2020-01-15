@@ -15,15 +15,6 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False
 app = Flask(__name__)
 
 
-@app.before_request
-def light_thread():
-    def run():
-        global break_bool
-        break_bool = True
-
-    thread = threading.Thread(target=run)
-    thread.start()
-
 def rainbow_rgb(offset):
 
     offset = 255 - offset
@@ -98,4 +89,6 @@ def index():
 
 
 if __name__ == "__main__":
+    thread.start_new_thread(rainbow, ())
+    thread.start_new_thread(rainbow_single, ())
     app.run(debug=True, threaded=True)
