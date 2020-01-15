@@ -8,7 +8,7 @@ num_pixels = 300
 ORDER = neopixel.GRB
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
-break_bool = False
+global break_bool = False
 
 app = Flask(__name__)
 
