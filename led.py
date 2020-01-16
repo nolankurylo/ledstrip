@@ -126,7 +126,6 @@ def index():
 
 p = Process(target=infloop)
 p.start()
-p.join()
 
 if __name__ == "__main__":
     app.run(debug=True)
