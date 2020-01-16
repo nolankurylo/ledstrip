@@ -2,8 +2,7 @@ from flask import *
 import board
 import neopixel
 import time
-from concurrent.futures import ThreadPoolExecutor
-executor = ThreadPoolExecutor(1) 
+from multiprocessing import Process
 
 
 
@@ -126,6 +125,8 @@ def index():
 
 
 if __name__ == "__main__":
-    executor.submit(infloop)    
+    p = Process(target=infloop)
+    p.start()
+    p.join()
     app.run(debug=True)
     
