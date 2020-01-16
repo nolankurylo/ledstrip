@@ -77,7 +77,6 @@ def background_one():
 
 def infloop():
     global pattern
-    pattern = "rainbow"
     while True:
         pixels.fill((0, 0, 0))  # Blue
         pixels.show()
