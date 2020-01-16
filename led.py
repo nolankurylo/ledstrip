@@ -103,7 +103,9 @@ def rainbow_single():
 
 
 def reset():
+    print("resetting")
     pixels.fill((0, 0, 0))
+    pixels.show()
     return
 
 
