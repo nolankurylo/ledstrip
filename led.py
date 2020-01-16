@@ -16,7 +16,8 @@ app = Flask(__name__)
 
 @app.route('/rainbow')
 def rainbow():
-    ThreadPoolExecutor.shutdownNow()
+    global executor
+    executor.shutdown()
     executor.submit(background_one)
     return ('', 200)
 
@@ -25,7 +26,8 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    ThreadPoolExecutor.shutdownNow()
+    global executor
+    executor.shutdown()
     executor.submit(background_one)
     return ('', 200)
 
