@@ -18,7 +18,7 @@ ORDER = neopixel.GRB
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
 
-threading.Thread(target=infloop, daemon=True).start()
+
 
 pattern = "rainbow"
 
@@ -111,7 +111,7 @@ def index():
 
 
 if __name__ == "__main__":
-    
+    threading.Thread(target=infloop, daemon=True).start()
     app.run(debug=True)
     # threading._start_new_thread(rainbow, ())
     # threading._start_new_thread(rainbow_single, ())
