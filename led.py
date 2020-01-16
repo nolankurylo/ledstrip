@@ -84,6 +84,8 @@ def infloop():
 
 @app.route('/rainbow')
 def rainbow():
+    print("r")
+    reset()
     global pattern
     pattern = "rainbow"
     return ('', 200)
@@ -93,6 +95,8 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
+    print("rs")
+    reset()
     global pattern
     pattern = "rainbow_single"
     return ('', 200)
