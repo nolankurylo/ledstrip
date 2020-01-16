@@ -76,6 +76,8 @@ def background_one():
 
 def infloop():
     while True:
+        global pattern
+        print("pattern== " + pattern)
         if pattern == "rainbow":
             background_one()
         elif pattern == "rainbow_single":
