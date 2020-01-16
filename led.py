@@ -2,7 +2,9 @@ from flask import *
 import board
 import neopixel
 import time
-import threading
+from concurrent.futures import ThreadPoolExecutor
+executor = ThreadPoolExecutor(1) 
+
 
 
 
@@ -124,7 +126,6 @@ def index():
 
 
 if __name__ == "__main__":
-    threading.Thread(target=infloop).start()
+    executor.submit(infloop)    
     app.run(debug=True)
-    # threading._start_new_thread(rainbow, ())
-    # threading._start_new_thread(rainbow_single, ())
+    
