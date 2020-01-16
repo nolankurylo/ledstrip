@@ -55,7 +55,7 @@ def background_two():
 
 def background_one():
     print("background 1")
-    print("in loop 2")
+    print("in loop 1")
     pixels.fill((255, 0, 0))  # Red
     pixels.show()
     time.sleep(1)
