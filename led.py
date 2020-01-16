@@ -81,7 +81,7 @@ def infloop():
         if pattern == "rainbow":
             background_one()
         elif pattern == "rainbow_single":
-            background_two
+            background_two()
 
 
 @app.route('/rainbow')
