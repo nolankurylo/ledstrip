@@ -18,8 +18,7 @@ q = Queue(connection=r)
 @app.route('/rainbow')
 def rainbow():
     global q
-    q.empty()
-    q.dequeue_all()
+    q.delete(delete_jobs=True)
     job = q.enqueue(background_one)
     job.cancel()
     return ('', 200)
@@ -31,8 +30,7 @@ def rainbow():
 def rainbow_single():
     print("rainbow_single")
     global q
-    q.empty()
-    q.dequeue_all()
+    q.delete(delete_jobs=True)
     job = q.enqueue(background_two)
     job.cancel()
     return ('', 200)
