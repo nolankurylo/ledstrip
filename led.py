@@ -6,7 +6,8 @@ import time
 
 executor = ThreadPoolExecutor(2)
 
-break_bool = False
+break_bool1 = False
+break_bool2 = False
 
 
 
