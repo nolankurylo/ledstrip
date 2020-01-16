@@ -3,6 +3,7 @@ from background_jobs import background_one, background_two
 from concurrent.futures import ThreadPoolExecutor
 
 executor = ThreadPoolExecutor(2)
+future = None
 
 
 
@@ -17,8 +18,9 @@ app = Flask(__name__)
 @app.route('/rainbow')
 def rainbow():
     global executor
-    executor.interrupt()
-    executor.submit(background_one)
+    global future
+    future.cancel()
+    future = executor.submit(background_one)
     return ('', 200)
 
 
@@ -27,7 +29,8 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     global executor
-    executor.interrupt()
+    global future
+    future.cancel()
     executor.submit(background_one)
     return ('', 200)
 
