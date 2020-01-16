@@ -1,11 +1,8 @@
 from flask import *
-from concurrent.futures import ThreadPoolExecutor
 import board
 import neopixel
 import time
-import asyncio
-
-executor = ThreadPoolExecutor(2)
+import threading
 
 
 
@@ -21,6 +18,9 @@ ORDER = neopixel.GRB
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
 
+threading.Thread(target=infloop, daemon=True).start()
+
+pattern = "rainbow"
 
 def rainbow_rgb(offset):
 
@@ -36,53 +36,56 @@ def rainbow_rgb(offset):
 
 def background_two():
     print("background 2")
-    while True:
-        print("in loop 2")
-        for i in range(num_pixels):
-            pixel_index = i * 256 // num_pixels
-            pixels.fill((0, 0, 0))
-            pixels[i] = rainbow_rgb(pixel_index & 255)
-            pixels.show()
-            time.sleep(0.01)
+    print("in loop 2")
+    for i in range(num_pixels):
+        pixel_index = i * 256 // num_pixels
+        pixels.fill((0, 0, 0))
+        pixels[i] = rainbow_rgb(pixel_index & 255)
+        pixels.show()
+        time.sleep(0.01)
 
-        for i in reversed(range(num_pixels)):
-            pixel_index = i * 256 // num_pixels
-            pixels.fill((0, 0, 0))
-            pixels[i] = rainbow_rgb(pixel_index & 255)
-            pixels.show()
-            time.sleep(0.01)
+    for i in reversed(range(num_pixels)):
+        pixel_index = i * 256 // num_pixels
+        pixels.fill((0, 0, 0))
+        pixels[i] = rainbow_rgb(pixel_index & 255)
+        pixels.show()
+        time.sleep(0.01)
     return
 
 
 def background_one():
     print("background 1")
-    while True:
-        print("in loop 2")
-        pixels.fill((255, 0, 0))  # Red
+    print("in loop 2")
+    pixels.fill((255, 0, 0))  # Red
+    pixels.show()
+    time.sleep(1)
+    pixels.fill((0, 255, 0))  # Green
+    pixels.show()
+    time.sleep(1)
+    pixels.fill((0, 0, 255))  # Blue
+    pixels.show()
+    time.sleep(1)
+    for i in range(num_pixels):
+        pixel_index = i * 256 // num_pixels
+        pixels[i] = rainbow_rgb(pixel_index & 255)
         pixels.show()
-        time.sleep(1)
-        pixels.fill((0, 255, 0))  # Green
-        pixels.show()
-        time.sleep(1)
-        pixels.fill((0, 0, 255))  # Blue
-        pixels.show()
-        time.sleep(1)
-        for i in range(num_pixels):
-            pixel_index = i * 256 // num_pixels
-            pixels[i] = rainbow_rgb(pixel_index & 255)
-            pixels.show()
-            time.sleep(0.01)
+        time.sleep(0.01)
     return
 
 
 
+def infloop():
+    while True:
+        if pattern == "rainbow":
+            background_one()
+        else if pattern == "rainbow_single":
+            background_two
 
 
 @app.route('/rainbow')
 def rainbow():
-    reset()
-    print("r")
-    executor.submit(background_one)
+    global pattern
+    pattern = "rainbow"
     return ('', 200)
 
 
@@ -90,15 +93,12 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    reset()
-    future = executor.submit(background_two)
+    global pattern
+    pattern = "rainbow_single"
     return ('', 200)
 
 
 def reset():
-    global executor
-    executor.shutdown()
-    executor = ThreadPoolExecutor(2)
     pixels.fill((0, 0, 0))
     return
 
