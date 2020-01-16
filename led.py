@@ -1,14 +1,13 @@
-import redis
-from rq import Queue
 from flask import *
 from background_jobs import background_one, background_two
+from concurrent.futures import ThreadPoolExecuter
 
+executor = ThreadPoolExecutor(2)
 
 
 
 app = Flask(__name__)
-r = redis.Redis()
-q = Queue(connection=r)
+
 
 
 
@@ -17,9 +16,8 @@ q = Queue(connection=r)
 
 @app.route('/rainbow')
 def rainbow():
-    global q
-    q.delete(delete_jobs=True)
-    job = q.enqueue(background_one)
+    executor.cancel()
+    executor.submit(background_one)
     return ('', 200)
 
 
@@ -27,10 +25,8 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    print("rainbow_single")
-    global q
-    q.delete(delete_jobs=True)
-    job = q.enqueue(background_two)
+    executor.cancel()
+    executor.submit(background_one)
     return ('', 200)
 
 @app.route('/reset')
