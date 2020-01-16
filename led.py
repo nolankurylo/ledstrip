@@ -18,8 +18,8 @@ app = Flask(__name__)
 @app.route('/rainbow')
 def rainbow():
     global executor
-    global future
-    future.cancel()
+    executor.shutdown()
+    executor = ThreadPoolExecutor(2)
     future = executor.submit(background_one)
     return ('', 200)
 
@@ -30,7 +30,8 @@ def rainbow():
 def rainbow_single():
     global executor
     global future
-    future.cancel()
+    executor.shutdown()
+    executor = ThreadPoolExecutor(2)
     executor.submit(background_one)
     return ('', 200)
 
