@@ -27,7 +27,7 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     global executor
-    xecutor.remove()
+    executor.remove()
     executor.submit(background_one)
     return ('', 200)
 
