@@ -36,9 +36,9 @@ def rainbow_rgb(offset):
 def background_two():
     print("background 2")
     while True:
-        global break_bool
-        if break_bool:
-            break_bool = False
+        global break_bool1
+        if break_bool1:
+            break_bool1 = False
             break
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
@@ -59,9 +59,9 @@ def background_two():
 def background_one():
     print("background 1")
     while True:
-        global break_bool
-        if break_bool:
-            break_bool = False
+        global break_bool2
+        if break_bool2:
+            break_bool2 = False
             break
         pixels.fill((255, 0, 0))  # Red
         pixels.show()
@@ -86,8 +86,8 @@ def background_one():
 @app.route('/rainbow')
 def rainbow():
     print("r")
-    global executor, break_bool
-    break_bool = True
+    global executor, break_bool2
+    break_bool2 = True
     future = executor.submit(background_one)
     return ('', 200)
 
@@ -97,8 +97,8 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     print("rs")
-    global executor, break_bool
-    break_bool = True
+    global executor, break_bool1
+    break_bool1 = True
     future = executor.submit(background_one)
     return ('', 200)
 
