@@ -21,7 +21,7 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False
 
 
 
-pattern = None
+pattern = "rainbow"
 
 def rainbow_rgb(offset):
 
