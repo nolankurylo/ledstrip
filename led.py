@@ -82,6 +82,7 @@ def infloop():
             background_one()
         elif pattern == "rainbow_single":
             background_two()
+        time.sleep(0.1)
 
 
 @app.route('/rainbow')
