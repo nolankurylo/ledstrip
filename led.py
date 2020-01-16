@@ -2,7 +2,7 @@ from flask import *
 import board
 import neopixel
 import time
-from multiprocessing import Process
+from threading 
 
 
 
@@ -18,7 +18,6 @@ ORDER = neopixel.GRB
 
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
                            pixel_order=ORDER)
-
 
 
 pattern = "rainbow"
@@ -77,6 +76,7 @@ def background_one():
 
 def infloop():
     global pattern
+    
     while True:
         pixels.fill((0, 0, 0))  # Blue
         pixels.show()
@@ -120,16 +120,10 @@ def reset():
 
 @app.route('/')
 def index():
-    p = Process(target=infloop)
-    p.start()
+    threading.Thread(target=infloop).start()
     return "index"
-
-
 
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-    
-    
-    
