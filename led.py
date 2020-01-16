@@ -3,7 +3,7 @@ from background_jobs import background_one, background_two
 from concurrent.futures import ThreadPoolExecutor
 
 executor = ThreadPoolExecutor(2)
-future = None
+future = executor
 
 
 
