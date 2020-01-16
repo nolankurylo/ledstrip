@@ -1,15 +1,83 @@
 from flask import *
-from background_jobs import background_one, background_two
 from concurrent.futures import ThreadPoolExecutor
-import os
+import board
+import neopixel
+import time
 
 executor = ThreadPoolExecutor(2)
+
+break_bool = False
 
 
 
 app = Flask(__name__)
 
 
+pixel_pin = board.D18
+num_pixels = 300
+ORDER = neopixel.GRB
+
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False,
+                           pixel_order=ORDER)
+
+
+def rainbow_rgb(offset):
+
+    offset = 255 - offset
+    if offset < 85:
+        return (255 - offset * 3, 0, offset * 3)
+    if offset < 170:
+        offset -= 85
+        return (0, offset * 3, 255 - offset * 3)
+    offset -= 170
+    return (offset * 3, 255 - offset * 3, 0)
+
+
+def background_two():
+    print("background 2")
+    while True:
+        global break_bool
+        if break_bool:
+            break_bool = False
+            break
+        for i in range(num_pixels):
+            pixel_index = i * 256 // num_pixels
+            pixels.fill((0, 0, 0))
+            pixels[i] = rainbow_rgb(pixel_index & 255)
+            pixels.show()
+            time.sleep(0.01)
+
+        for i in reversed(range(num_pixels)):
+            pixel_index = i * 256 // num_pixels
+            pixels.fill((0, 0, 0))
+            pixels[i] = rainbow_rgb(pixel_index & 255)
+            pixels.show()
+            time.sleep(0.01)
+    return
+
+
+def background_one():
+    print("background 1")
+    while True:
+        global break_bool
+        if break_bool:
+            break_bool = False
+            break
+        pixels.fill((255, 0, 0))  # Red
+        pixels.show()
+        time.sleep(1)
+        pixels.fill((0, 255, 0))  # Green
+        pixels.show()
+        time.sleep(1)
+        pixels.fill((0, 0, 255))  # Blue
+        pixels.show()
+        time.sleep(1)
+        for i in range(num_pixels):
+            pixel_index = i * 256 // num_pixels
+            pixels[i] = rainbow_rgb(pixel_index & 255)
+            pixels.show()
+            time.sleep(0.01)
+    return
 
 
 
@@ -18,8 +86,8 @@ app = Flask(__name__)
 @app.route('/rainbow')
 def rainbow():
     print("r")
-    global executor
-    os.environ.get('break_bool') = True
+    global executor, break_bool
+    break_bool = True
     future = executor.submit(background_one)
     return ('', 200)
 
@@ -29,8 +97,8 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     print("rs")
-    global executor
-    os.environ.get('break_bool') = True
+    global executor, break_bool
+    break_bool = True
     future = executor.submit(background_one)
     return ('', 200)
 
