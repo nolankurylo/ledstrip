@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 @app.route('/rainbow')
 def rainbow():
-    executor.cancel()
+    executor.shutdownNow()
     executor.submit(background_one)
     return ('', 200)
 
@@ -25,7 +25,7 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    executor.cancel()
+    executor.shutdownNow()
     executor.submit(background_one)
     return ('', 200)
 
