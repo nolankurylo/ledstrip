@@ -84,6 +84,7 @@ def background_one():
 
 @app.route('/rainbow')
 def rainbow():
+    reset()
     print("r")
     global executor, break_bool2
     break_bool2 = True
@@ -95,15 +96,17 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
+    reset()
     print("rs")
     global executor, break_bool1
     break_bool1 = True
     future = executor.submit(background_two)
     return ('', 200)
 
-@app.route('/reset')
+
 def reset():
-    pass
+    pixels.fill((0, 0, 0))
+    return
 
 
 
