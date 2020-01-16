@@ -1,6 +1,6 @@
 from flask import *
 from background_jobs import background_one, background_two
-import concurrent.futures
+from concurrent.futures import ThreadPoolExecutor
 
 executor = ThreadPoolExecutor(2)
 
