@@ -119,7 +119,7 @@ def index():
 
 
 if __name__ == "__main__":
-    threading.Thread(target=infloop, daemon=True).start()
+    threading.Thread(target=infloop).start()
     app.run(debug=True)
     # threading._start_new_thread(rainbow, ())
     # threading._start_new_thread(rainbow_single, ())
