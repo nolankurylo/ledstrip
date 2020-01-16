@@ -78,7 +78,7 @@ def infloop():
     while True:
         if pattern == "rainbow":
             background_one()
-        else if pattern == "rainbow_single":
+        elif pattern == "rainbow_single":
             background_two
 
 
