@@ -20,7 +20,7 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1, auto_write=False
 
 
 
-pattern = "rainbow"
+pattern = None
 
 def rainbow_rgb(offset):
 
@@ -75,10 +75,12 @@ def background_one():
 
 
 def infloop():
+    global pattern
+    pattern = "rainbow"
     while True:
         pixels.fill((0, 0, 0))  # Blue
         pixels.show()
-        global pattern
+        
         print("pattern== " + pattern)
         if pattern == "rainbow":
             background_one()
