@@ -1,6 +1,7 @@
 import board
 import neopixel
 import time
+from led import break_bool
 
 pixel_pin = board.D18
 num_pixels = 300
@@ -25,6 +26,10 @@ def rainbow_rgb(offset):
 def background_two():
     print("background 2")
     while True:
+        global break_bool
+        if break_bool:
+            break_bool = False
+            break
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
             pixels.fill((0, 0, 0))
@@ -44,6 +49,10 @@ def background_two():
 def background_one():
     print("background 1")
     while True:
+        global break_bool
+        if break_bool:
+            break_bool = False
+            break
         pixels.fill((255, 0, 0))  # Red
         pixels.show()
         time.sleep(1)
