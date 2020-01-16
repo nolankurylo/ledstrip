@@ -38,7 +38,7 @@ def background_two():
     print("background 2")
     global break_bool2
     while not break_bool2:
-       print("in loop 2")
+        print("in loop 2")
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
             pixels.fill((0, 0, 0))
