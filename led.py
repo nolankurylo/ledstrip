@@ -1,9 +1,9 @@
 from flask import *
 from background_jobs import background_one, background_two
 from concurrent.futures import ThreadPoolExecutor
+import os
 
 executor = ThreadPoolExecutor(2)
-break_bool = False
 
 
 
@@ -18,8 +18,8 @@ app = Flask(__name__)
 @app.route('/rainbow')
 def rainbow():
     print("r")
-    global executor, break_bool
-    break_bool = True
+    global executor
+    os.environ.get('break_bool') = True
     future = executor.submit(background_one)
     return ('', 200)
 
@@ -29,8 +29,8 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     print("rs")
-    global executor, break_bool
-    break_bool = True
+    global executor
+    os.environ.get('break_bool') = True
     future = executor.submit(background_one)
     return ('', 200)
 

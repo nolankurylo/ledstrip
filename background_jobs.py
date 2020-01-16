@@ -26,9 +26,9 @@ def rainbow_rgb(offset):
 def background_two():
     print("background 2")
     while True:
-        global break_bool
-        if break_bool:
-            break_bool = False
+        
+        if os.environ.get('break_bool'):
+            os.environ.get('break_bool') = False
             break
         for i in range(num_pixels):
             pixel_index = i * 256 // num_pixels
@@ -49,9 +49,8 @@ def background_two():
 def background_one():
     print("background 1")
     while True:
-        global break_bool
-        if break_bool:
-            break_bool = False
+        if os.environ.get('break_bool'):
+            os.environ.get('break_bool') = False
             break
         pixels.fill((255, 0, 0))  # Red
         pixels.show()
