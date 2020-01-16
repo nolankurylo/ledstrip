@@ -121,14 +121,16 @@ def reset():
 
 @app.route('/')
 def index():
+    p = Process(target=infloop)
+    p.start()
     return "index"
 
 
-p = Process(target=infloop)
-p.start()
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+
     
     
     
