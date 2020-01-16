@@ -86,8 +86,8 @@ def background_one():
 @app.route('/rainbow')
 def rainbow():
     print("r")
-    global executor, break_bool2
-    break_bool2 = True
+    global executor, break_bool1
+    break_bool1 = True
     future = executor.submit(background_one)
     return ('', 200)
 
