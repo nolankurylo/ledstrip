@@ -75,9 +75,10 @@ def background_one():
 
 
 def infloop():
-    global pattern
+    global pattern, num_pixels
     
     while True:
+
         if num_pixels == 0:
             prev_pattern = pattern
             while True:
