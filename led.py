@@ -92,7 +92,7 @@ def infloop():
 @app.route('/rainbow')
 def rainbow():
     print("r")
-    if threading.currentThread():
+    if threading.currentThread().isAlive():
         threading.currentThread().join()
     threading.currentThread()._delete()
     reset()
@@ -107,7 +107,7 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     print("rs")
-    if threading.currentThread():
+    if threading.currentThread().isAlive():
         threading.currentThread().join()
     threading.currentThread()._delete()
     reset()
