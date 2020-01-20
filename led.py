@@ -97,7 +97,7 @@ def rainbow():
     reset()
     global pattern
     pattern = "rainbow"
-    threading.Thread(target=infloop).start()
+    threading.Thread(target=infloop, daemon=True).start()
     return ('', 200)
 
 
@@ -111,7 +111,7 @@ def rainbow_single():
     reset()
     global pattern
     pattern = "rainbow_single"
-    threading.Thread(target=infloop).start()
+    threading.Thread(target=infloop, daemon=True).start()
     return ('', 200)
 
 
@@ -127,7 +127,7 @@ def reset():
 
 @app.route('/')
 def index():
-    threading.Thread(target=infloop).start()
+    threading.Thread(target=infloop, daemon=True).start()
     
     return "index"
 
