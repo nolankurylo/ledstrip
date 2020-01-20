@@ -79,11 +79,6 @@ def infloop():
     
     while True:
 
-        if num_pixels == 0:
-            prev_pattern = pattern
-            while True:
-                if pattern != prev_pattern:
-                    break
         num_pixels = 300
         pixels.fill((0, 0, 0))  # Blue
         pixels.show()
@@ -101,7 +96,7 @@ def rainbow():
     print("r")
     global pattern, num_pixels
     pattern = "rainbow"
-    num_pixels = 0
+    num_pixels = 1
     return ('', 200)
 
 
@@ -112,7 +107,7 @@ def rainbow_single():
     print("rs")
     global pattern, num_pixels
     pattern = "rainbow_single"
-    num_pixels = 0
+    num_pixels = 1
     return ('', 200)
 
 
