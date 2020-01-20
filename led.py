@@ -92,10 +92,12 @@ def infloop():
 @app.route('/rainbow')
 def rainbow():
     print("r")
+    threading.currentThread()._stop()
     threading.currentThread()._delete()
-    threading.Thread(target=infloop).start()
+    reset()
     global pattern
     pattern = "rainbow"
+    threading.Thread(target=infloop).start()
     return ('', 200)
 
 
@@ -104,10 +106,12 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     print("rs")
+    threading.currentThread()._stop()
     threading.currentThread()._delete()
-    threading.Thread(target=infloop).start()
+    reset()
     global pattern
     pattern = "rainbow_single"
+    threading.Thread(target=infloop).start()
     return ('', 200)
 
 
@@ -115,6 +119,7 @@ def reset():
     print("resetting")
     pixels.fill((0, 0, 0))
     pixels.show()
+    time.sleep(1)
     return
 
 
