@@ -16,7 +16,7 @@ pixel_pin = board.D18
 num_pixels = 300
 ORDER = neopixel.GRB
 
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.01, auto_write=False,
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.1, auto_write=False,
                            pixel_order=ORDER)
 
 
@@ -92,7 +92,7 @@ def infloop():
 @app.route('/rainbow')
 def rainbow():
     print("r")
-    threading.currentThread.join()
+    threading.currentThread()._delete()
     threading.Thread(target=infloop).start()
     global pattern
     pattern = "rainbow"
@@ -104,7 +104,7 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     print("rs")
-    threading.currentThread.join()
+    threading.currentThread()._delete()
     threading.Thread(target=infloop).start()
     global pattern
     pattern = "rainbow_single"
