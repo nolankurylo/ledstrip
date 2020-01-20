@@ -78,7 +78,7 @@ def infloop():
     global pattern
     
     while True:
-        if num_pixels == 0;
+        if num_pixels == 0:
             prev_pattern = pattern
             while True:
                 if pattern != prev_pattern:
