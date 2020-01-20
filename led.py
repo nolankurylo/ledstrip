@@ -15,10 +15,10 @@ app = Flask(__name__)
 pixel_pin = board.D18
 num_pixels = 300
 ORDER = neopixel.GRB
+counter = 0
 
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.1, auto_write=False,
                            pixel_order=ORDER)
-
 
 pattern = "rainbow"
 
@@ -35,7 +35,7 @@ def rainbow_rgb(offset):
 
 
 def background_two():
-    global num_pixels
+
     for i in range(num_pixels):
         pixel_index = i * 256 // num_pixels
         pixels.fill((0, 0, 0))
@@ -53,9 +53,7 @@ def background_two():
 
 
 def background_one():
-    global num_pixels
-    print("background 1")
-    print("in loop 1")
+    
     pixels.fill((255, 0, 0))  # Red
     pixels.show()
     time.sleep(1)
@@ -75,11 +73,11 @@ def background_one():
 
 
 def infloop():
-    global pattern, num_pixels
+    global pattern
     
     while True:
 
-        num_pixels = 300
+        
         pixels.fill((0, 0, 0))  # Blue
         pixels.show()
         
@@ -96,7 +94,7 @@ def rainbow():
     print("r")
     global pattern, num_pixels
     pattern = "rainbow"
-    num_pixels = 1
+    
     return ('', 200)
 
 
@@ -107,7 +105,7 @@ def rainbow_single():
     print("rs")
     global pattern, num_pixels
     pattern = "rainbow_single"
-    num_pixels = 1
+   
     return ('', 200)
 
 
