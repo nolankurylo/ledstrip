@@ -92,6 +92,7 @@ def infloop():
 @app.route('/rainbow')
 def rainbow():
     print("r")
+    threading.currentThread.join()
     threading.Thread(target=infloop).start()
     global pattern
     pattern = "rainbow"
@@ -103,6 +104,7 @@ def rainbow():
 @app.route('/rainbow_single')
 def rainbow_single():
     print("rs")
+    threading.currentThread.join()
     threading.Thread(target=infloop).start()
     global pattern
     pattern = "rainbow_single"
@@ -121,6 +123,7 @@ def reset():
 @app.route('/')
 def index():
     threading.Thread(target=infloop).start()
+    
     return "index"
 
 
