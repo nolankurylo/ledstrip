@@ -2,7 +2,8 @@ from flask import *
 import board
 import neopixel
 import time
-import threading 
+import multiprocessing
+import psutil
 
 
 
@@ -20,7 +21,7 @@ counter = 0
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.1, auto_write=False,
                            pixel_order=ORDER)
 
-pattern = "rainbow"
+
 
 def rainbow_rgb(offset):
 
@@ -72,28 +73,11 @@ def background_one():
 
 
 
-def infloop():
-    global pattern
-    
-    while True:
-
-        
-        pixels.fill((0, 0, 0))  # Blue
-        pixels.show()
-        
-        print("pattern== " + pattern)
-        if pattern == "rainbow":
-            background_one()
-        elif pattern == "rainbow_single":
-            background_two()
-        time.sleep(0.1)
 
 
 @app.route('/rainbow')
 def rainbow():
-    print("r")
-    global pattern, num_pixels
-    pattern = "rainbow"
+    task_runner('background_two')
     
     return ('', 200)
 
@@ -102,9 +86,7 @@ def rainbow():
         
 @app.route('/rainbow_single')
 def rainbow_single():
-    print("rs")
-    global pattern, num_pixels
-    pattern = "rainbow_single"
+    task_runner('background_one')
    
     return ('', 200)
 
@@ -114,8 +96,15 @@ def rainbow_single():
 
 @app.route('/')
 def index():
-    threading.Thread(target=infloop).start()
     return "index"
+
+
+def task_runner(var):
+    processes = psutil.Process().children()
+    for p in processes:
+        p.kill()
+    process = multiprocessing.Process(target=blink, args=(var,))
+    process.start()
 
 
 if __name__ == "__main__":
