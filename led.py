@@ -91,7 +91,12 @@ def rainbow_single():
     return ('', 200)
 
 
-
+def loop(pattern):
+    while True:
+        if pattern == 'background_one':
+            background_one()
+        else:
+            background_two()
 
 
 @app.route('/')
@@ -103,7 +108,7 @@ def task_runner(var):
     processes = psutil.Process().children()
     for p in processes:
         p.kill()
-    process = multiprocessing.Process(target=blink, args=(var,))
+    process = multiprocessing.Process(target=loop, args=(var,))
     process.start()
 
 
